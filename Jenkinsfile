@@ -12,7 +12,10 @@
             checkout scm
         }
         stage('Build Test') {
-            sh "mvn -Dmaven.test.failure.ignore clean install"
+            sh """
+                export PATH="/opt/maven/apache-maven-3.3.3/bin:/opt/jdk/jdk1.8.0_112/bin:$PATH"
+                mvn -Dmaven.test.failure.ignore clean install
+            """
             junit '**/target/surefire-reports/TEST-*.xml'
             archiveArtifacts 'target/*.jar'
       }
