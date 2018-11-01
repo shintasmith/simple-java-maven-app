@@ -6,8 +6,8 @@
 //  containers: [
 //    containerTemplate(name: 'maven', image: 'maven:3.5.2-jdk-8-alpine', ttyEnabled: true, command: 'cat')
 //  ]) {
-    node("kubernetes") {
-      container("maven") {
+    node("ha-pod") {
+      container("dind") {
         stage('Checkout') {
             checkout scm
         }
